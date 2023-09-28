@@ -1,4 +1,4 @@
-from django.db import models
+from django.db.models import Sum
 from rest_framework import generics
 from rest_framework.response import Response
 
@@ -18,10 +18,11 @@ class SpendView(generics.ListCreateAPIView):
     def get(self, request, *args, **kwargs):
         
         grouped_queryset = self.queryset.values('date', 'name').annotate(
-            spend=models.Sum('spend'),
-            impressions=models.Sum('impressions'),
-            clicks=models.Sum('clicks'),
-            conversion=models.Sum('conversion')
+            spend=Sum('spend'),
+            impressions=Sum('impressions'),
+            clicks=Sum('clicks'),
+            conversion=Sum('conversion'),
+            revenue=Sum('revenue_statistic__revenue'),
         )
         grouped_data = list(grouped_queryset)
         

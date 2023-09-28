@@ -19,8 +19,8 @@ class SpendViewTestCase(TestCase):
         revenue = RevenueStatistic.objects.create(name='TestRevenue', date='2023-09-28', revenue=20.99, spend=spend_3)
     
     def tearDown(self):
-        SpendStatistic.objects.delete()
-        RevenueStatistic.objects.delete()
+        SpendStatistic.objects.all().delete()
+        RevenueStatistic.objects.all().delete()
     
     def test_get_statistic(self):
         response = self.client.get(self.url)

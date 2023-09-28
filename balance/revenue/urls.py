@@ -3,5 +3,5 @@ from .views import RevenueView
 
 
 urlpatterns = [
-    path('revenues/', RevenueView.as_view())
+    path('revenues/', RevenueView.as_view(), name='revenue')
 ]

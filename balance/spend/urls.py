@@ -3,5 +3,5 @@ from .views import SpendView
 
 
 urlpatterns = [
-    path('spends/', SpendView.as_view())
+    path('spends/', SpendView.as_view(), name='spend')
 ]

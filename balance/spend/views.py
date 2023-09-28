@@ -3,18 +3,13 @@ from rest_framework import generics
 from rest_framework.response import Response
 
 from .models import SpendStatistic
-from .serializers import CreateSpendSerializer
+from .serializers import SpendSerializer
 
 # Create your views here.
 class SpendView(generics.ListCreateAPIView):
     queryset = SpendStatistic.objects.all()
+    serializer_class = SpendSerializer
     
-    def get_serializer_class(self):
-        if self.request.method == "GET":
-            return CreateSpendSerializer
-        elif self.request.method == "POST":
-            return CreateSpendSerializer
-
     def get(self, request, *args, **kwargs):
         
         grouped_queryset = self.queryset.values('date', 'name').annotate(

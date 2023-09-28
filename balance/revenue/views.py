@@ -12,8 +12,6 @@ class RevenueView(generics.ListCreateAPIView):
     
     def get(self, request, *args, **kwargs):
         
-        
-        
         grouped_queryset = self.queryset.values('date', 'name').annotate(
             revenue=Sum('revenue'),
             spend_spend=Sum('spend__spend'),
